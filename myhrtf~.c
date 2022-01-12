@@ -4,13 +4,10 @@
 
 static t_class *myhrtf_tilde_class;
 
-#define MAX_BLOCKSIZE 4096
-
 typedef struct _myhrtf_tilde{
 
   t_object x_obj;
   t_float x_f;
-
 
 /*define inlet and outlet*/
 
@@ -66,8 +63,8 @@ typedef struct _myhrtf_tilde{
 
 /*storage buffer*/
 
-  t_sample l_buffer[MAX_BLOCKSIZE];
-  t_sample r_buffer[MAX_BLOCKSIZE];
+  t_sample* l_buffer;
+  t_sample* r_buffer;
 
 } t_myhrtf_tilde;
 
@@ -104,8 +101,6 @@ static t_int *myhrtf_tilde_perform(t_int *w){
   fftwf_execute(x->iffftw_l_plan);
   fftwf_execute(x->iffftw_r_plan);
 
-  int p = x->fft_size;
-
 /*input out signal to buffer*/
   for(i=0;i<x->fft_size;i++){
     x->l_buffer[i]=x->l_buffer[i]+x->l_out[i]/x->fft_size;
@@ -138,8 +133,6 @@ static void myhrtf_tilde_dsp(t_myhrtf_tilde *x, t_signal **sp){
 
   x->sample_rate = sp[0]->s_sr;
 
-  int i;
-
   /*read EigenHRTFs information*/
   x->path = MAKEFILE_DIR;//get a absolute　path of EigenHRTFs
 
@@ -154,6 +147,9 @@ static void myhrtf_tilde_dsp(t_myhrtf_tilde *x, t_signal **sp){
 
   x->filter_l = malloc(sizeof(float complex)*(x->eigen->n_bins));
   x->filter_r = malloc(sizeof(float complex)*(x->eigen->n_bins));
+
+  x->l_buffer = malloc(sizeof(t_sample)*x->fft_size);
+  x->r_buffer = malloc(sizeof(t_sample)*x->fft_size);
   memset(x->l_buffer,0.0f,sizeof(x->l_buffer));
   memset(x->r_buffer,0.0f,sizeof(x->r_buffer));
 
@@ -229,6 +225,8 @@ void myhrtf_tilde_free(t_myhrtf_tilde *x){
   free(x->eigen);
   free(x->filter_l);
   free(x->filter_r);
+  free(x->l_buffer);
+  free(x->r_buffer);
 
 }
 
