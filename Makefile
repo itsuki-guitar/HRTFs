@@ -6,10 +6,10 @@ ldflags = -L/usr/local/lib/ -lfftw3f -lm
 
 
 # library name
-lib.name = myhrtf~
+lib.name = hrtf~
 
 # input source file (class name == source file basename)
-class.sources = myhrtf~.c
+class.sources = hrtf~.c
 
 # all extra files to be included in binary distribution of the library
 datafiles = 
