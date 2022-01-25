@@ -1,0 +1,65 @@
+#N canvas 153 193 528 621 12;
+#X obj 37 18 cnv 15 450 70 empty empty hrtf~ 20 25 0 40 -221198 -262144
+0;
+#X obj 100 291 hrtf~, f 21;
+#X floatatom 211 181 5 0 360 0 - - -;
+#X floatatom 210 211 5 -40 90 1 - - -;
+#X floatatom 210 242 5 20 160 1 - - -;
+#X obj 261 276 tgl 15 0 empty empty select_pinna_(1:large_0:small)
+0 -7 0 10 -203904 -1 -1 0 1;
+#X obj 263 182 hsl 128 15 0 360 0 0 empty empty azimuth_(0~360) -2
+-8 0 10 -261234 -1 -1 0 1;
+#X obj 263 214 hsl 128 15 -40 90 0 0 empty empty elevation_(-40~90)
+-2 -8 0 10 -262130 -1 -1 0 1;
+#X obj 264 245 hsl 128 15 20 160 0 0 empty empty distance_(20~160)
+-2 -8 0 10 -204786 -1 -1 0 1;
+#X obj 100 323 output~;
+#X obj 101 220 noise~;
+#X obj 117 392 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-66577 0;
+#X obj 117 525 cnv 17 3 17 empty \$0-pddp.cnv.let.0 0 5 9 0 16 -228856
+-66577 0;
+#X obj 117 414 cnv 17 3 17 empty \$0-pddp.cnv.let.1 1 5 9 0 16 -261234
+-86277 0;
+#X text 137 413 float;
+#X text 137 524 signal;
+#X obj 117 436 cnv 17 3 17 empty \$0-pddp.cnv.let.1 2 5 9 0 16 -257985
+-83269 0;
+#X obj 117 545 cnv 17 3 17 empty \$0-pddp.cnv.let.0 1 5 9 0 16 -66577
+-66577 0;
+#X text 137 544 signal;
+#X obj 117 458 cnv 17 3 17 empty \$0-pddp.cnv.let.1 3 5 9 0 16 -204786
+-13381 0;
+#X text 137 435 float;
+#X text 137 458 float;
+#X text 175 413 - azimuth (0..360 deg.);
+#X text 175 458 - distance (20..160 cm);
+#X obj 117 480 cnv 17 3 17 empty \$0-pddp.cnv.let.1 4 5 9 0 16 -203904
+-16662 0;
+#X text 259 392 comment;
+#X text 137 391 symbol and signal;
+#X text 174 435 - elevation (-40..90 deg.);
+#X text 182 524 - binaural signal for the left channel;
+#X text 182 544 - binaural signal for the right channel;
+#X obj 36 379 cnv 3 450 3 empty \$0-pddp.cnv.inlets inlets 8 18 0 13
+-221198 -1 0;
+#X obj 37 507 cnv 3 450 3 empty \$0-pddp.cnv.outlets outlets 8 18 0
+13 -221198 -1 0;
+#X obj 39 575 cnv 3 450 3 empty \$0-pddp.cnv.outlets more_infomation
+8 18 0 13 -221198 -66577 0;
+#X text 180 585 https://github.com/itsuki-guitar/HRTFs;
+#X text 61 98 hrtf~ is real-time binaural audio object for Pure-data
+based on Head-Related Head Functions. You can easily created binaural
+sound by using HRTFs. This is a help putch. Please give it a try.,
+f 58;
+#X text 137 480 select pinna (1:large 0:small);
+#X connect 1 0 9 0;
+#X connect 1 1 9 1;
+#X connect 2 0 1 1;
+#X connect 3 0 1 2;
+#X connect 4 0 1 3;
+#X connect 5 0 1 4;
+#X connect 6 0 2 0;
+#X connect 7 0 3 0;
+#X connect 8 0 4 0;
+#X connect 10 0 1 0;

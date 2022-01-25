@@ -1,0 +1,36 @@
+#N canvas 179 182 633 447 12;
+#X obj 170 258 myhrtf~, f 21;
+#X floatatom 182 136 5 0 360 0 - - -;
+#X floatatom 181 168 5 -40 90 1 - - -;
+#X floatatom 181 199 5 20 160 1 - - -;
+#X obj 113 138 tgl 50 0 empty empty PINNA 3 25 0 15 -204800 -13330
+-13330 0 1;
+#X obj 234 136 hsl 150 20 0 360 0 0 empty empty azimuth_(0~360) 4 10
+0 13 -261234 -86277 -86277 0 1;
+#X obj 234 168 hsl 150 20 -40 90 0 0 empty empty elevation_(-40~90)
+4 10 0 13 -262130 -83269 -83269 0 1;
+#X obj 235 199 hsl 150 20 20 160 0 0 empty empty distance_(20~160)
+4 10 0 13 -204786 -13381 -13381 0 1;
+#X obj 102 254 outlet~;
+#X obj 347 255 outlet~;
+#X obj 101 76 inlet~;
+#X text 111 196 0:small 1:large;
+#X obj 158 76 inlet;
+#X obj 211 76 inlet;
+#X obj 263 77 inlet;
+#X obj 324 78 inlet;
+#X connect 0 0 8 0;
+#X connect 0 1 9 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 2;
+#X connect 3 0 0 3;
+#X connect 4 0 0 4;
+#X connect 5 0 1 0;
+#X connect 6 0 2 0;
+#X connect 7 0 3 0;
+#X connect 10 0 0 0;
+#X connect 12 0 1 0;
+#X connect 13 0 2 0;
+#X connect 14 0 3 0;
+#X connect 15 0 4 0;
+#X coords 0 -1 1 1 300 150 1 100 100;
